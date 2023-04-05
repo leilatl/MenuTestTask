@@ -14,9 +14,9 @@
 		CE6C9C0029DC41C90024F7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */; };
 		CE6C9C0329DC41C90024F7BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6C9C0129DC41C90024F7BE /* LaunchScreen.storyboard */; };
 		CE6C9C0B29DC42880024F7BE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C0A29DC42880024F7BE /* TabController.swift */; };
-		CE6C9C0F29DC42C60024F7BE /* PromoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C0E29DC42C60024F7BE /* PromoCollectionViewCell.swift */; };
-		CE6C9C1129DC42DE0024F7BE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1029DC42DE0024F7BE /* CategoryCollectionViewCell.swift */; };
-		CE6C9C1329DC42F60024F7BE /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1229DC42F60024F7BE /* MenuTableViewCell.swift */; };
+		CE6C9C0F29DC42C60024F7BE /* PromoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C0E29DC42C60024F7BE /* PromoCollectionCell.swift */; };
+		CE6C9C1129DC42DE0024F7BE /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1029DC42DE0024F7BE /* CategoryCollectionCell.swift */; };
+		CE6C9C1329DC42F60024F7BE /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1229DC42F60024F7BE /* MenuCell.swift */; };
 		CE6C9C1529DC43100024F7BE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1429DC43100024F7BE /* MenuViewController.swift */; };
 		CE6C9C1729DC43290024F7BE /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1629DC43290024F7BE /* MenuModel.swift */; };
 		CE6C9C1929DC43420024F7BE /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1829DC43420024F7BE /* MenuInteractor.swift */; };
@@ -24,6 +24,8 @@
 		CE6C9C1D29DC43790024F7BE /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1C29DC43790024F7BE /* MenuPresenter.swift */; };
 		CE6C9C2029DC442F0024F7BE /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1F29DC442F0024F7BE /* BasicLabel.swift */; };
 		CE6C9C4B29DC7D360024F7BE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */; };
+		CE6C9C4F29DD8CF70024F7BE /* MenuImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C4E29DD8CF70024F7BE /* MenuImages.swift */; };
+		CE6C9C5729DDA10D0024F7BE /* MenuStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C5629DDA10D0024F7BE /* MenuStrings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +39,9 @@
 		CE6C9C0229DC41C90024F7BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE6C9C0429DC41C90024F7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE6C9C0A29DC42880024F7BE /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
-		CE6C9C0E29DC42C60024F7BE /* PromoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE6C9C1029DC42DE0024F7BE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE6C9C1229DC42F60024F7BE /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		CE6C9C0E29DC42C60024F7BE /* PromoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCollectionCell.swift; sourceTree = "<group>"; };
+		CE6C9C1029DC42DE0024F7BE /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		CE6C9C1229DC42F60024F7BE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CE6C9C1429DC43100024F7BE /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		CE6C9C1629DC43290024F7BE /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		CE6C9C1829DC43420024F7BE /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		CE6C9C1F29DC442F0024F7BE /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
 		CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CE6C9C4D29DD12370024F7BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE6C9C4E29DD8CF70024F7BE /* MenuImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuImages.swift; sourceTree = "<group>"; };
+		CE6C9C5629DDA10D0024F7BE /* MenuStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStrings.swift; sourceTree = "<group>"; };
 		CE76802A75E04785B7FF1FA1 /* Pods_TestMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,49 +106,42 @@
 		CE6C9BF229DC41C70024F7BE /* TestMenu */ = {
 			isa = PBXGroup;
 			children = (
+				CE6C9C5329DD934A0024F7BE /* App */,
+				CE6C9C5429DD93640024F7BE /* Navigation */,
+				CE6C9C0C29DC42AC0024F7BE /* Screens */,
 				CE6C9C4929DC7D210024F7BE /* Managers */,
-				CE6C9C1E29DC44040024F7BE /* UI helpers */,
-				CE6C9C0C29DC42AC0024F7BE /* MenuScene */,
-				CE6C9BF329DC41C70024F7BE /* AppDelegate.swift */,
-				CE6C9BF529DC41C70024F7BE /* SceneDelegate.swift */,
-				CE6C9C0A29DC42880024F7BE /* TabController.swift */,
-				CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */,
-				CE6C9C0129DC41C90024F7BE /* LaunchScreen.storyboard */,
-				CE6C9C0429DC41C90024F7BE /* Info.plist */,
-				CE6C9BFC29DC41C70024F7BE /* TestMenu.xcdatamodeld */,
+				CE6C9C1E29DC44040024F7BE /* UI Helpers */,
+				CE6C9C5529DD937F0024F7BE /* Resources */,
 			);
 			path = TestMenu;
 			sourceTree = "<group>";
 		};
-		CE6C9C0C29DC42AC0024F7BE /* MenuScene */ = {
+		CE6C9C0C29DC42AC0024F7BE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C9C0D29DC42B40024F7BE /* Cells */,
-				CE6C9C1429DC43100024F7BE /* MenuViewController.swift */,
-				CE6C9C1629DC43290024F7BE /* MenuModel.swift */,
-				CE6C9C1829DC43420024F7BE /* MenuInteractor.swift */,
-				CE6C9C1A29DC435C0024F7BE /* MenuWorker.swift */,
-				CE6C9C1C29DC43790024F7BE /* MenuPresenter.swift */,
+				CE6C9C5229DD92400024F7BE /* Menu */,
 			);
-			path = MenuScene;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		CE6C9C0D29DC42B40024F7BE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C9C0E29DC42C60024F7BE /* PromoCollectionViewCell.swift */,
-				CE6C9C1029DC42DE0024F7BE /* CategoryCollectionViewCell.swift */,
-				CE6C9C1229DC42F60024F7BE /* MenuTableViewCell.swift */,
+				CE6C9C0E29DC42C60024F7BE /* PromoCollectionCell.swift */,
+				CE6C9C1029DC42DE0024F7BE /* CategoryCollectionCell.swift */,
+				CE6C9C1229DC42F60024F7BE /* MenuCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		CE6C9C1E29DC44040024F7BE /* UI helpers */ = {
+		CE6C9C1E29DC44040024F7BE /* UI Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				CE6C9C1F29DC442F0024F7BE /* BasicLabel.swift */,
+				CE6C9C4E29DD8CF70024F7BE /* MenuImages.swift */,
+				CE6C9C5629DDA10D0024F7BE /* MenuStrings.swift */,
 			);
-			path = "UI helpers";
+			path = "UI Helpers";
 			sourceTree = "<group>";
 		};
 		CE6C9C4929DC7D210024F7BE /* Managers */ = {
@@ -153,6 +150,47 @@
 				CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE6C9C5229DD92400024F7BE /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C9C1429DC43100024F7BE /* MenuViewController.swift */,
+				CE6C9C0D29DC42B40024F7BE /* Cells */,
+				CE6C9C1629DC43290024F7BE /* MenuModel.swift */,
+				CE6C9C1829DC43420024F7BE /* MenuInteractor.swift */,
+				CE6C9C1A29DC435C0024F7BE /* MenuWorker.swift */,
+				CE6C9C1C29DC43790024F7BE /* MenuPresenter.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		CE6C9C5329DD934A0024F7BE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C9BF329DC41C70024F7BE /* AppDelegate.swift */,
+				CE6C9BF529DC41C70024F7BE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CE6C9C5429DD93640024F7BE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C9C0A29DC42880024F7BE /* TabController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		CE6C9C5529DD937F0024F7BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */,
+				CE6C9C0129DC41C90024F7BE /* LaunchScreen.storyboard */,
+				CE6C9C0429DC41C90024F7BE /* Info.plist */,
+				CE6C9BFC29DC41C70024F7BE /* TestMenu.xcdatamodeld */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,17 +327,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6C9C0F29DC42C60024F7BE /* PromoCollectionViewCell.swift in Sources */,
+				CE6C9C0F29DC42C60024F7BE /* PromoCollectionCell.swift in Sources */,
 				CE6C9C0B29DC42880024F7BE /* TabController.swift in Sources */,
+				CE6C9C4F29DD8CF70024F7BE /* MenuImages.swift in Sources */,
 				CE6C9C1B29DC435C0024F7BE /* MenuWorker.swift in Sources */,
 				CE6C9C4B29DC7D360024F7BE /* CoreDataManager.swift in Sources */,
 				CE6C9C1729DC43290024F7BE /* MenuModel.swift in Sources */,
-				CE6C9C1329DC42F60024F7BE /* MenuTableViewCell.swift in Sources */,
+				CE6C9C1329DC42F60024F7BE /* MenuCell.swift in Sources */,
 				CE6C9C2029DC442F0024F7BE /* BasicLabel.swift in Sources */,
+				CE6C9C5729DDA10D0024F7BE /* MenuStrings.swift in Sources */,
 				CE6C9C1529DC43100024F7BE /* MenuViewController.swift in Sources */,
 				CE6C9BF429DC41C70024F7BE /* AppDelegate.swift in Sources */,
 				CE6C9BFE29DC41C70024F7BE /* TestMenu.xcdatamodeld in Sources */,
-				CE6C9C1129DC42DE0024F7BE /* CategoryCollectionViewCell.swift in Sources */,
+				CE6C9C1129DC42DE0024F7BE /* CategoryCollectionCell.swift in Sources */,
 				CE6C9C1929DC43420024F7BE /* MenuInteractor.swift in Sources */,
 				CE6C9C1D29DC43790024F7BE /* MenuPresenter.swift in Sources */,
 				CE6C9BF629DC41C70024F7BE /* SceneDelegate.swift in Sources */,
@@ -443,7 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestMenu/Info.plist;
+				INFOPLIST_FILE = TestMenu/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -470,7 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestMenu/Info.plist;
+				INFOPLIST_FILE = TestMenu/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

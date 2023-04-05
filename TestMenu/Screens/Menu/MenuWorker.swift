@@ -53,7 +53,6 @@ class MenuWorker: IMenuWorker {
 			} else {
 				completion(MenuModel.NetworkingData.MealDetailData(meals: []))
 			}
-			
 		}
 	}
 }

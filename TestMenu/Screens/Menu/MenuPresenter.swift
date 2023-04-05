@@ -14,9 +14,9 @@ protocol IMenuPresenter {
 }
 
 class MenuPresenter: IMenuPresenter {
-	private weak var viewController: MenuViewController?
-
-	init(viewController: MenuViewController?) {
+	weak var viewController: MenuViewController?
+	
+	func setViewController(viewController: MenuViewController) {
 		self.viewController = viewController
 	}
 
@@ -31,6 +31,7 @@ class MenuPresenter: IMenuPresenter {
 		let viewModel = getDataMealsFromResponse(response: meals)
 		viewController?.renderMeals(viewModel: viewModel)
 	}
+	
 	private func getViewDataCategoryFromResponse(response: [MenuModel.BusinessLogic.Category],
 												 selectedId: Int) -> [MenuModel.ViewModel.Category] {
 		var categories = [MenuModel.ViewModel.Category]()

@@ -29,7 +29,7 @@ class CoreDataManager: ICoredataManager {
 			let categories = try context?.fetch(CategoryCoreData.fetchRequest())
 			return categories ?? []
 		} catch {
-			print("cant fetch categories from core data")
+			print(MenuStrings.coreDataError)
 		}
 
 		return []
@@ -41,7 +41,7 @@ class CoreDataManager: ICoredataManager {
 			let menuItems = try context?.fetch(MenuItemCoreData.fetchRequest())
 			return menuItems ?? []
 		} catch {
-			print("cant fetch menu items from core data")
+			print(MenuStrings.coreDataError)
 		}
 
 		return []

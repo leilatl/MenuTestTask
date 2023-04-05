@@ -24,7 +24,14 @@ class MyTabBarController: UITabBarController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let firstVC = MenuViewController()
+		let worker = MenuWorker()
+		let presenter = MenuPresenter()
+		let coreDataManager = CoreDataManager()
+		let interactor = MenuInteractor(worker: worker, presenter: presenter, coreDataManager: coreDataManager)
+		
+		let firstVC = MenuViewController(interactor: interactor)
+		presenter.setViewController(viewController: firstVC)
+		
 		let secondVC = SecondViewController()
 		let thirdVC = ThirdViewController()
 		let forthVC = ForthViewController()

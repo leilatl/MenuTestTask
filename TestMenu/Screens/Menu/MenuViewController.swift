@@ -35,40 +35,46 @@ class MenuViewController: UIViewController {
 	private var interactor: IMenuInteractor?
 	/// вью модель контроллера
 	var menuViewModel = MenuModel.ViewModel(categories: [], menuItems: [])
-
+	
+	init(interactor: IMenuInteractor) {
+		super.init(nibName: nil, bundle: nil)
+		self.interactor = interactor
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError(MenuStrings.initFatalError)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		setUpCollectionView()
-		setUpTableView()
+		setupCollectionView()
+		setupTableView()
 		style()
 		layout()
-		setUpDependencies()
 
-		interactor?.showCategories(selectedId: 0)
-		interactor?.showMenuItems(for: "Beef")
+		interactor?.showCategories(selectedId: MenuDigits.firstSelectedId)
+		interactor?.showMenuItems(for: MenuStrings.firstFetchCategory)
 	}
 
 	private func style() {
+		arrowImage.image = MenuImages.arrow
+		cityLabel.text = MenuStrings.cityLabel
+		cityLabel.font = UIFont.systemFont(ofSize: MenuDigits.cityLabelTextSize, weight: .medium)
+		cityLabel.textColor = .black
+		view.backgroundColor = MenuColors.greyBackground
+		categoriesCollectionView.backgroundColor = MenuColors.greyBackground
+		promoView.backgroundColor = MenuColors.greyBackground
+	}
+	
+	private func layout() {
 		headerView.translatesAutoresizingMaskIntoConstraints = false
 		categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		promoView.translatesAutoresizingMaskIntoConstraints = false
 		cityLabel.translatesAutoresizingMaskIntoConstraints = false
 		arrowImage.translatesAutoresizingMaskIntoConstraints = false
-
 		categoriesCollectionView.showsHorizontalScrollIndicator = false
-		
-		arrowImage.image = UIImage(named: "Arrow")
-		cityLabel.text = "Moscow"
-		cityLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-		cityLabel.textColor = .black
-		view.backgroundColor = UIColor(named: "Background Grey")
-		categoriesCollectionView.backgroundColor = UIColor(named: "Background Grey")
-		promoView.backgroundColor = UIColor(named: "Background Grey")
-	}
-	
-	private func layout() {
 		
 		view.addSubview(headerView)
 		headerView.addSubview(categoriesCollectionView)
@@ -77,128 +83,109 @@ class MenuViewController: UIViewController {
 		view.addSubview(cityLabel)
 		view.addSubview(arrowImage)
 		
-		headerViewTopConstraint = headerView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 10)
+		headerViewTopConstraint = headerView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: MenuDigits.leadingTrailingConstants)
 		
 		NSLayoutConstraint.activate([
 			cityLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			cityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+			cityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MenuDigits.leadingTrailingConstants),
 			
 			arrowImage.centerYAnchor.constraint(equalTo: cityLabel.centerYAnchor),
-			arrowImage.leadingAnchor.constraint(equalTo: cityLabel.trailingAnchor, constant: 5),
+			arrowImage.leadingAnchor.constraint(equalTo: cityLabel.trailingAnchor, constant: MenuDigits.arrowImageLeadingConstant),
 			
 			headerViewTopConstraint!,
 			headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			headerView.heightAnchor.constraint(equalToConstant: 200),
+			headerView.heightAnchor.constraint(equalToConstant: MenuDigits.headerViewHeight),
 			
 			promoView.topAnchor.constraint(equalTo: headerView.topAnchor),
-			promoView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 10),
-			promoView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -10),
-			promoView.heightAnchor.constraint(equalToConstant: 130),
+			promoView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: MenuDigits.leadingTrailingConstants),
+			promoView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -MenuDigits.leadingTrailingConstants),
+			promoView.heightAnchor.constraint(equalToConstant: MenuDigits.promoViewHeight),
 			
 			categoriesCollectionView.topAnchor.constraint(equalTo: promoView.bottomAnchor),
-			categoriesCollectionView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 10),
+			categoriesCollectionView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: MenuDigits.leadingTrailingConstants),
 			categoriesCollectionView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-			categoriesCollectionView.heightAnchor.constraint(equalToConstant: 50),
+			categoriesCollectionView.heightAnchor.constraint(equalToConstant: MenuDigits.categoriesCollectionHeight),
 			
-			tableView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: 10),
+			tableView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: MenuDigits.leadingTrailingConstants),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 	}
 	
-	private func setUpCollectionView() {
+	private func setupCollectionView() {
 		
 		let layoutCategories = UICollectionViewFlowLayout()
 		layoutCategories.scrollDirection = .horizontal
-		layoutCategories.itemSize = CGSize(width: 130, height: 40)
+		layoutCategories.itemSize = CGSize(width: MenuDigits.categoriesCellWidth, height: MenuDigits.categoriesCellHeight)
 		
 		categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCategories)
 		categoriesCollectionView.delegate = self
 		categoriesCollectionView.dataSource = self
 		
-		categoriesCollectionView.register(CategoryCollectionViewCell.self,
-										  forCellWithReuseIdentifier: "CustomCollectionViewCell")
+		categoriesCollectionView.register(CategoryCollectionCell.self,
+										  forCellWithReuseIdentifier: MenuStrings.categoriesCellIdentifier)
 		
 		let layoutPromo = UICollectionViewFlowLayout()
 		layoutPromo.scrollDirection = .horizontal
-		layoutPromo.itemSize = CGSize(width: 350, height: 120)
+		layoutPromo.itemSize = CGSize(width: MenuDigits.promoCellWidth, height: MenuDigits.promoCellHeight)
 		
 		promoView = UICollectionView(frame: .zero, collectionViewLayout: layoutPromo)
 		promoView.delegate = self
 		promoView.dataSource = self
 		
-		promoView.register(PromoCollectionViewCell.self, forCellWithReuseIdentifier: "PromoCollectionViewCell")
+		promoView.register(PromoCollectionCell.self, forCellWithReuseIdentifier: MenuStrings.promoCellIdentifier)
 	}
 	
-	private func setUpTableView() {
+	private func setupTableView() {
 		tableView.dataSource = self
 		tableView.delegate = self
 		
-		tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MyCell")
+		tableView.register(MenuCell.self, forCellReuseIdentifier: MenuStrings.tableViewCellIdentifier)
 	}
-	
-	private func setUpDependencies() {
-		let worker = MenuWorker()
-		let presenter = MenuPresenter(viewController: self)
-		let coreDataManager = CoreDataManager()
-		interactor = MenuInteractor(worker: worker, presenter: presenter, coreDataManager: coreDataManager)
-	}
+
 }
 
 extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 	/// реализация метода протокола UICollectionViewDataSource. возвращает количество ячеек в коллекции
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if collectionView == promoView {
-			return 2
+			return MenuDigits.numberOfPromos
 		} else if collectionView == categoriesCollectionView {
 			return menuViewModel.categories.count
 		}
-		fatalError("Unknown collection view")
+		fatalError(MenuStrings.unknownColelctionViewError)
 	}
 	
 	/// реализация метода протокола UICollectionViewDelegate. возвращает ячейки и определяет их интерфейс
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if collectionView == promoView {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromoCollectionViewCell",
-														  for: indexPath) as! PromoCollectionViewCell
-			
-			cell.promoImage.image = UIImage(named: "promo\(indexPath.row+1)")
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuStrings.promoCellIdentifier,
+														  for: indexPath) as! PromoCollectionCell
+			cell.update(imageName: "promo\(indexPath.row+1)")
 			
 			return cell
 		} else if collectionView == categoriesCollectionView {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell",
-														  for: indexPath) as! CategoryCollectionViewCell
-			
-			cell.label.text = menuViewModel.categories[indexPath.row].title
-			
-			if menuViewModel.categories[indexPath.row].status == .selected {
-				cell.labelView.backgroundColor = UIColor(named: "Pale Pink")
-				cell.labelView.layer.borderColor = UIColor(named: "Pale Pink")?.cgColor
-				cell.label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-				cell.label.textColor = UIColor(named: "Pink")
-			} else {
-				cell.labelView.backgroundColor = UIColor(named: "Background Grey")
-				cell.labelView.layer.borderColor = UIColor(named: "Light Pink")?.cgColor
-				cell.label.font = UIFont.systemFont(ofSize: 16, weight: .light)
-				cell.label.textColor = UIColor(named: "Light Pink")
-			}
-			
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuStrings.categoriesCellIdentifier,
+														  for: indexPath) as! CategoryCollectionCell
+
+			cell.update(title: menuViewModel.categories[indexPath.row].title, selected: menuViewModel.categories[indexPath.row].status)
+
 			return cell
 		}
-		fatalError("Unknown collection view")
+		fatalError(MenuStrings.unknownColelctionViewError)
 		
 	}
 	
 	/// реализация метода протокола UICollectionViewDataSource. возвращает размер каждой ячейки
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		if collectionView == promoView {
-			return CGSize(width: 350, height: 125)
+			return CGSize(width: MenuDigits.promoCellWidth, height: MenuDigits.promoCellHeight)
 		} else if collectionView == categoriesCollectionView {
-			return CGSize(width: 100, height: 40)
+			return CGSize(width: MenuDigits.categoriesCellWidth, height: MenuDigits.categoriesCellHeight)
 		}
-		fatalError("Unknown collection view")
+		fatalError(MenuStrings.unknownColelctionViewError)
 		
 	}
 	
@@ -221,21 +208,16 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	/// реализация метода протокола UITableViewDelegate. возвращает ячейку для каждой строки в списке
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MenuTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: MenuStrings.tableViewCellIdentifier, for: indexPath) as! MenuCell
 		
-		cell.itemTitlelabel.text = menuViewModel.menuItems[indexPath.row].title
-		cell.decriptionLabel.text = menuViewModel.menuItems[indexPath.row].composition
-		cell.priceLabel.text = menuViewModel.menuItems[indexPath.row].price
-		
-		let imageStr = menuViewModel.menuItems[indexPath.row].imageString
-		cell.itemImageView.sd_setImage(with: URL(string: imageStr))
+		cell.update(viewModel: menuViewModel, index: indexPath.row)
 		
 		return cell
 	}
 	
 	/// реализация метода протокола UITableViewDataSource. возвращает высоту каждой ячейки
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 180
+		return MenuDigits.tableViewCellHeight
 	}
 	
 	/// реализация метода протокола UITableViewDataSource. определяет поведение при нажатии на ячейку
@@ -247,16 +229,16 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let yPoint = scrollView.contentOffset.y
 		
-		let swipingDown = yPoint <= 0
-		let shouldStick = yPoint > 30
-		let promoViewHeight = 110
+		let swipingDown = yPoint <= MenuDigits.scrollSwipeDown
+		let shouldStick = yPoint > MenuDigits.scrollStickPoint
+		let promoViewHeight = MenuDigits.promoCellHeight
 		
-		UIView.animate(withDuration: 0.3) {
+		UIView.animate(withDuration: MenuDigits.animationDuration) {
 			self.promoView.alpha = swipingDown ? 1.0 : 0.0
 		}
 		
-		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, animations: {
-			self.headerViewTopConstraint?.constant = CGFloat(shouldStick ? -promoViewHeight : 0)
+		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: MenuDigits.animationDuration, delay: MenuDigits.animationDelay, animations: {
+			self.headerViewTopConstraint?.constant = CGFloat(shouldStick ? -promoViewHeight : MenuDigits.promoViewHeightWhenSticked)
 			self.view.layoutIfNeeded()
 		})
 	}
@@ -264,6 +246,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MenuViewController: IMenuViewController {
 	/// метод, инициирующий прогрузку списка блюд. viewModel - вью модель для отображения списка блюд
+	/// //showMeals
 	func renderMeals(viewModel: [MenuModel.ViewModel.MenuItem]) {
 		menuViewModel.menuItems = viewModel
 		tableView.reloadData()
