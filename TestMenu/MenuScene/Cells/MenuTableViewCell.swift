@@ -4,16 +4,23 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
+// swiftlint: disable trailing_whitespace
 import UIKit
 import SDWebImage
+
+/// класс ячейки в списке блюд. описывает интерфейс каждой ячейки в списке блюд.
 class MenuTableViewCell: UITableViewCell {
 	
+	/// картинка блюда
 	let itemImageView = UIImageView()
+	/// текст названия блюда
 	let itemTitlelabel = BasicLabel(text: "", size: 18.5, weight: .semibold)
+	/// текст описания блюда
 	let decriptionLabel = BasicLabel(text: "", color: UIColor(named: "Grey Text")!, size: 13)
-	let priceView = UIView()
+	/// текст цены блюда
 	let priceLabel = BasicLabel(text: "", color: UIColor(named: "Pink")!, size: 13, weight: .light)
+	/// контейнер цены блюда
+	let priceView = UIView()
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,7 +62,7 @@ class MenuTableViewCell: UITableViewCell {
 			priceView.widthAnchor.constraint(equalToConstant: 86),
 			
 			priceLabel.centerYAnchor.constraint(equalTo: priceView.centerYAnchor),
-			priceLabel.centerXAnchor.constraint(equalTo: priceView.centerXAnchor),
+			priceLabel.centerXAnchor.constraint(equalTo: priceView.centerXAnchor)
 		])
 	}
 	

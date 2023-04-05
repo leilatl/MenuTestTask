@@ -4,43 +4,51 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
+// swiftlint: disable trailing_whitespace force_cast line_length
 import UIKit
 import Alamofire
-
+/// протокол вью контроллера
 protocol IMenuViewController {
 	func renderCategory(viewModel: [MenuModel.ViewModel.Category])
-	func renderMeals(viewModel: [MenuModel.ViewModel.MenuItem], id: Int)
+	func renderMeals(viewModel: [MenuModel.ViewModel.MenuItem])
 }
 
+/// класс вью контроллера
 class MenuViewController: UIViewController {
-	
-	let tableView = UITableView()
-	let headerView = UIView()
-	var headerViewTopConstraint: NSLayoutConstraint?
-	var promoView: UICollectionView!
-	var categoriesCollectionView: UICollectionView!
-	var interactor: IMenuInteractor?
-	let cityLabel = UILabel()
-	let arrowImage = UIImageView()
-	
+
+	/// список блюд
+	private let tableView = UITableView()
+	/// контейнер для коллекции промо и коллекции категорий
+	private let headerView = UIView()
+	/// ограничение верхнего края верхнего контейнера
+	private var headerViewTopConstraint: NSLayoutConstraint?
+	/// коллекция промо акций
+	private var promoView: UICollectionView!
+	/// коллекция категорий
+	private var categoriesCollectionView: UICollectionView!
+	/// текст названия города
+	private let cityLabel = UILabel()
+	/// картинка стрелочки возле названия города
+	private let arrowImage = UIImageView()
+
+	/// интерактор вью контроллера
+	private var interactor: IMenuInteractor?
+	/// вью модель контроллера
 	var menuViewModel = MenuModel.ViewModel(categories: [], menuItems: [])
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		
-		
+
 		setUpCollectionView()
 		setUpTableView()
 		style()
 		layout()
 		setUpDependencies()
-		
+
 		interactor?.showCategories(selectedId: 0)
-		interactor?.showMenuItems(for: "Beef", id: 0)
+		interactor?.showMenuItems(for: "Beef")
 	}
-	
+
 	private func style() {
 		headerView.translatesAutoresizingMaskIntoConstraints = false
 		categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +56,7 @@ class MenuViewController: UIViewController {
 		promoView.translatesAutoresizingMaskIntoConstraints = false
 		cityLabel.translatesAutoresizingMaskIntoConstraints = false
 		arrowImage.translatesAutoresizingMaskIntoConstraints = false
-		
+
 		categoriesCollectionView.showsHorizontalScrollIndicator = false
 		
 		arrowImage.image = UIImage(named: "Arrow")
@@ -110,7 +118,8 @@ class MenuViewController: UIViewController {
 		categoriesCollectionView.delegate = self
 		categoriesCollectionView.dataSource = self
 		
-		categoriesCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCollectionViewCell")
+		categoriesCollectionView.register(CategoryCollectionViewCell.self,
+										  forCellWithReuseIdentifier: "CustomCollectionViewCell")
 		
 		let layoutPromo = UICollectionViewFlowLayout()
 		layoutPromo.scrollDirection = .horizontal
@@ -123,7 +132,7 @@ class MenuViewController: UIViewController {
 		promoView.register(PromoCollectionViewCell.self, forCellWithReuseIdentifier: "PromoCollectionViewCell")
 	}
 	
-	private func setUpTableView(){
+	private func setUpTableView() {
 		tableView.dataSource = self
 		tableView.delegate = self
 		
@@ -138,24 +147,28 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+	/// реализация метода протокола UICollectionViewDataSource. возвращает количество ячеек в коллекции
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if collectionView == promoView {
 			return 2
-		}else if collectionView == categoriesCollectionView {
+		} else if collectionView == categoriesCollectionView {
 			return menuViewModel.categories.count
 		}
 		fatalError("Unknown collection view")
 	}
 	
+	/// реализация метода протокола UICollectionViewDelegate. возвращает ячейки и определяет их интерфейс
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if collectionView == promoView {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromoCollectionViewCell", for: indexPath) as! PromoCollectionViewCell
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromoCollectionViewCell",
+														  for: indexPath) as! PromoCollectionViewCell
 			
 			cell.promoImage.image = UIImage(named: "promo\(indexPath.row+1)")
 			
 			return cell
-		}else if collectionView == categoriesCollectionView {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
+		} else if collectionView == categoriesCollectionView {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell",
+														  for: indexPath) as! CategoryCollectionViewCell
 			
 			cell.label.text = menuViewModel.categories[indexPath.row].title
 			
@@ -177,31 +190,35 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		
 	}
 	
+	/// реализация метода протокола UICollectionViewDataSource. возвращает размер каждой ячейки
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		if collectionView == promoView {
 			return CGSize(width: 350, height: 125)
-		}else if collectionView == categoriesCollectionView {
+		} else if collectionView == categoriesCollectionView {
 			return CGSize(width: 100, height: 40)
 		}
 		fatalError("Unknown collection view")
 		
 	}
 	
+	/// реализация метода протокола UICollectionViewDelegate. определяет поведение при нажатии на ячейку коллекции
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if collectionView == promoView {
 			
-		}else if collectionView == categoriesCollectionView {
-			interactor?.showMenuItems(for: menuViewModel.categories[indexPath.row].title, id: indexPath.row)
+		} else if collectionView == categoriesCollectionView {
+			interactor?.showMenuItems(for: menuViewModel.categories[indexPath.row].title)
 			interactor?.showCategories(selectedId: indexPath.row)
 		}
 	}
 }
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+	/// реализация метода протокола UITableViewDataSource. возвращает количество ячеек в списке
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return menuViewModel.menuItems.count
 	}
 	
+	/// реализация метода протокола UITableViewDelegate. возвращает ячейку для каждой строки в списке
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MenuTableViewCell
 		
@@ -212,23 +229,25 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 		let imageStr = menuViewModel.menuItems[indexPath.row].imageString
 		cell.itemImageView.sd_setImage(with: URL(string: imageStr))
 		
-		
 		return cell
 	}
 	
+	/// реализация метода протокола UITableViewDataSource. возвращает высоту каждой ячейки
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 180
 	}
 	
+	/// реализация метода протокола UITableViewDataSource. определяет поведение при нажатии на ячейку
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
+	/// метод, ответственный за прилипание верхнего контейнера к верхней части экрана при скролле
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let y = scrollView.contentOffset.y
+		let yPoint = scrollView.contentOffset.y
 		
-		let swipingDown = y <= 0
-		let shouldStick = y > 30
+		let swipingDown = yPoint <= 0
+		let shouldStick = yPoint > 30
 		let promoViewHeight = 110
 		
 		UIView.animate(withDuration: 0.3) {
@@ -243,11 +262,13 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MenuViewController: IMenuViewController {
-	func renderMeals(viewModel: [MenuModel.ViewModel.MenuItem], id: Int) {
+	/// метод, инициирующий прогрузку списка блюд. viewModel - вью модель для отображения списка блюд
+	func renderMeals(viewModel: [MenuModel.ViewModel.MenuItem]) {
 		menuViewModel.menuItems = viewModel
 		tableView.reloadData()
 	}
 	
+	/// метод, инициирующий прогрузку списка категорий. viewModel - вью модель для отображения списка категорий
 	func renderCategory(viewModel: [MenuModel.ViewModel.Category]) {
 		menuViewModel.categories = viewModel
 		categoriesCollectionView.reloadData()

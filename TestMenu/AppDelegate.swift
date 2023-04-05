@@ -4,7 +4,7 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
+// swiftlint: disable all
 import UIKit
 import CoreData
 

@@ -4,10 +4,13 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
-import Foundation
+// swiftlint: disable trailing_whitespace
 import UIKit
+
+/// класс ячейки в коллекции промо. описывает интерфейс каждой ячейки в коллекции промо.
 class PromoCollectionViewCell: UICollectionViewCell {
+	
+	/// изображение в ячейке промо
 	let promoImage = UIImageView()
 	
 	override init(frame: CGRect) {
@@ -28,7 +31,7 @@ class PromoCollectionViewCell: UICollectionViewCell {
 			promoImage.widthAnchor.constraint(equalToConstant: 380),
 			promoImage.heightAnchor.constraint(equalToConstant: 140),
 			promoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-			promoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+			promoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
 			
 		])
 	}

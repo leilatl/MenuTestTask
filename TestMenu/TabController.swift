@@ -4,7 +4,7 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
+// swiftlint: disable trailing_whitespace
 import Foundation
 import UIKit
 class TabViewController: UIViewController {
@@ -39,8 +39,6 @@ class MyTabBarController: UITabBarController {
 		
 		UITabBar.appearance().tintColor = UIColor(named: "Pink")
 		UITabBar.appearance().backgroundColor = .white
-
-		
 		
 		self.viewControllers = [firstVC, secondVC, thirdVC, forthVC]
 	}

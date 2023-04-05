@@ -4,33 +4,35 @@
 //
 //  Created by Dmitry Serebrov on 04.04.2023.
 //
-
+// swiftlint: disable trailing_whitespace vertical_parameter_alignment
 import Foundation
 import UIKit
 import SDWebImage
 protocol IMenuPresenter {
 	func presentCategories(response: [MenuModel.BusinessLogic.Category], selectedId: Int)
-	func presentMeals(meals: [MenuModel.BusinessLogic.MenuItem], id: Int)
+	func presentMeals(meals: [MenuModel.BusinessLogic.MenuItem])
 }
 
 class MenuPresenter: IMenuPresenter {
 	private weak var viewController: MenuViewController?
-	
+
 	init(viewController: MenuViewController?) {
 		self.viewController = viewController
 	}
-	
+
+	/// метод, преобразующий вьюмодель и передающий его в вью контроллер для отображения списка категорий
 	func presentCategories(response: [MenuModel.BusinessLogic.Category], selectedId: Int) {
 		let viewModel = getViewDataCategoryFromResponse(response: response, selectedId: selectedId)
 		viewController?.renderCategory(viewModel: viewModel)
 	}
-	
-	func presentMeals(meals: [MenuModel.BusinessLogic.MenuItem], id: Int) {
+
+	/// метод, преобразующий вьюмодель и передающий его в вью контроллер для отображения списка блюд
+	func presentMeals(meals: [MenuModel.BusinessLogic.MenuItem]) {
 		let viewModel = getDataMealsFromResponse(response: meals)
-		viewController?.renderMeals(viewModel: viewModel, id: id)
+		viewController?.renderMeals(viewModel: viewModel)
 	}
-	
-	private func getViewDataCategoryFromResponse(response: [MenuModel.BusinessLogic.Category], selectedId: Int) -> [MenuModel.ViewModel.Category] {
+	private func getViewDataCategoryFromResponse(response: [MenuModel.BusinessLogic.Category],
+												 selectedId: Int) -> [MenuModel.ViewModel.Category] {
 		var categories = [MenuModel.ViewModel.Category]()
 		
 		for categoryResponse in response {
@@ -51,7 +53,10 @@ class MenuPresenter: IMenuPresenter {
 			let newString = dataString.replacingOccurrences(of: #"\/"#, with: "//")
 										.replacingOccurrences(of: "////", with: "//")
 			
-			let newMeal = MenuModel.ViewModel.MenuItem(title: meal.title, composition: meal.composition, imageString: newString, price: "от \(String(meal.price)) руб.")
+			let newMeal = MenuModel.ViewModel.MenuItem(title: meal.title,
+													   composition: meal.composition,
+													   imageString: newString,
+													   price: "от \(String(meal.price)) руб.")
 			meals.append(newMeal)
 		}
 		

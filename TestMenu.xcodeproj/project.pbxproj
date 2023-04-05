@@ -10,7 +10,6 @@
 		6879714021DE0B9A389129CF /* Pods_TestMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE76802A75E04785B7FF1FA1 /* Pods_TestMenu.framework */; };
 		CE6C9BF429DC41C70024F7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9BF329DC41C70024F7BE /* AppDelegate.swift */; };
 		CE6C9BF629DC41C70024F7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9BF529DC41C70024F7BE /* SceneDelegate.swift */; };
-		CE6C9BF829DC41C70024F7BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9BF729DC41C70024F7BE /* ViewController.swift */; };
 		CE6C9BFE29DC41C70024F7BE /* TestMenu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9BFC29DC41C70024F7BE /* TestMenu.xcdatamodeld */; };
 		CE6C9C0029DC41C90024F7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */; };
 		CE6C9C0329DC41C90024F7BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6C9C0129DC41C90024F7BE /* LaunchScreen.storyboard */; };
@@ -24,6 +23,7 @@
 		CE6C9C1B29DC435C0024F7BE /* MenuWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1A29DC435C0024F7BE /* MenuWorker.swift */; };
 		CE6C9C1D29DC43790024F7BE /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1C29DC43790024F7BE /* MenuPresenter.swift */; };
 		CE6C9C2029DC442F0024F7BE /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C1F29DC442F0024F7BE /* BasicLabel.swift */; };
+		CE6C9C4B29DC7D360024F7BE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,6 @@
 		CE6C9BF029DC41C70024F7BE /* TestMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C9BF329DC41C70024F7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C9BF529DC41C70024F7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE6C9BF729DC41C70024F7BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE6C9BFD29DC41C70024F7BE /* TestMenu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestMenu.xcdatamodel; sourceTree = "<group>"; };
 		CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE6C9C0229DC41C90024F7BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,8 @@
 		CE6C9C1A29DC435C0024F7BE /* MenuWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuWorker.swift; sourceTree = "<group>"; };
 		CE6C9C1C29DC43790024F7BE /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		CE6C9C1F29DC442F0024F7BE /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
+		CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CE6C9C4D29DD12370024F7BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE76802A75E04785B7FF1FA1 /* Pods_TestMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,6 +83,7 @@
 		CE6C9BE729DC41C70024F7BE = {
 			isa = PBXGroup;
 			children = (
+				CE6C9C4D29DD12370024F7BE /* README.md */,
 				CE6C9BF229DC41C70024F7BE /* TestMenu */,
 				CE6C9BF129DC41C70024F7BE /* Products */,
 				939C02F4575A51A8009869A3 /* Pods */,
@@ -100,11 +102,11 @@
 		CE6C9BF229DC41C70024F7BE /* TestMenu */ = {
 			isa = PBXGroup;
 			children = (
+				CE6C9C4929DC7D210024F7BE /* Managers */,
 				CE6C9C1E29DC44040024F7BE /* UI helpers */,
 				CE6C9C0C29DC42AC0024F7BE /* MenuScene */,
 				CE6C9BF329DC41C70024F7BE /* AppDelegate.swift */,
 				CE6C9BF529DC41C70024F7BE /* SceneDelegate.swift */,
-				CE6C9BF729DC41C70024F7BE /* ViewController.swift */,
 				CE6C9C0A29DC42880024F7BE /* TabController.swift */,
 				CE6C9BFF29DC41C90024F7BE /* Assets.xcassets */,
 				CE6C9C0129DC41C90024F7BE /* LaunchScreen.storyboard */,
@@ -145,6 +147,14 @@
 			path = "UI helpers";
 			sourceTree = "<group>";
 		};
+		CE6C9C4929DC7D210024F7BE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C9C4A29DC7D360024F7BE /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,6 +167,7 @@
 				CE6C9BED29DC41C70024F7BE /* Frameworks */,
 				CE6C9BEE29DC41C70024F7BE /* Resources */,
 				9E94C893D22B2C537373AFA2 /* [CP] Embed Pods Frameworks */,
+				CE6C9C4C29DD074A0024F7BE /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -252,6 +263,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestMenu/Pods-TestMenu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE6C9C4C29DD074A0024F7BE /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -262,10 +292,10 @@
 				CE6C9C0F29DC42C60024F7BE /* PromoCollectionViewCell.swift in Sources */,
 				CE6C9C0B29DC42880024F7BE /* TabController.swift in Sources */,
 				CE6C9C1B29DC435C0024F7BE /* MenuWorker.swift in Sources */,
+				CE6C9C4B29DC7D360024F7BE /* CoreDataManager.swift in Sources */,
 				CE6C9C1729DC43290024F7BE /* MenuModel.swift in Sources */,
 				CE6C9C1329DC42F60024F7BE /* MenuTableViewCell.swift in Sources */,
 				CE6C9C2029DC442F0024F7BE /* BasicLabel.swift in Sources */,
-				CE6C9BF829DC41C70024F7BE /* ViewController.swift in Sources */,
 				CE6C9C1529DC43100024F7BE /* MenuViewController.swift in Sources */,
 				CE6C9BF429DC41C70024F7BE /* AppDelegate.swift in Sources */,
 				CE6C9BFE29DC41C70024F7BE /* TestMenu.xcdatamodeld in Sources */,
