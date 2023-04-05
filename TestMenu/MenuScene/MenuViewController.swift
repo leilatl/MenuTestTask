@@ -142,7 +142,8 @@ class MenuViewController: UIViewController {
 	private func setUpDependencies() {
 		let worker = MenuWorker()
 		let presenter = MenuPresenter(viewController: self)
-		interactor = MenuInteractor(worker: worker, presenter: presenter)
+		let coreDataManager = CoreDataManager()
+		interactor = MenuInteractor(worker: worker, presenter: presenter, coreDataManager: coreDataManager)
 	}
 }
 

@@ -76,11 +76,27 @@ class CoreDataManager: ICoredataManager {
 
 	/// метод для удаления всех категорий в CoreData.
 	func deleteAllCategories() {
+		let categories = getAllCategories()
+		for category in categories {
+			context?.delete(category)
+		}
+		do {
+			try context?.save()
+		} catch {
 
+		}
 	}
 
 	/// метод для удаления всех блюд в CoreData.
 	func deleteAllMenuItems() {
+		let menuItems = getAllMenuItems()
+		for menuItem in menuItems {
+			context?.delete(menuItem)
+		}
+		do {
+			try context?.save()
+		} catch {
 
+		}
 	}
 }
